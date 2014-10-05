@@ -10,6 +10,7 @@ global.rekuire = require('rekuire');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var mogs = rekuire('mog');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/', mogs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
