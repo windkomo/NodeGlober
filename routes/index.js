@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var MogController = rekuire('mogController.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
 
-    var mysql      = require('mysql');
+ /*   var mysql      = require('mysql');
     var connection = mysql.createConnection({
         host     : 'localhost',
         user     : 'globreader',
@@ -24,12 +25,12 @@ router.get('/', function(req, res) {
     connection.query('SELECT skill_name FROM skills', function(err, rows, fields) {
         if (err) throw err;
 
-        console.log('The solution is: ', rows[0].skill_name);
+        console.log('The solution iszogood: ', rows[0].skill_name);
     });
 
-    connection.end();
-
-
+    connection.end();*/
+    var mogController = new MogController();
+    mogController.getMogs();
 
   res.render('index', { title: 'NodeGlober' });
 });
