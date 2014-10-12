@@ -1,1 +1,1 @@
-var app = angular.module('NodeGlober', ['NodeGlober.controllers']);
+var app = angular.module('anglober', ['anglober.controllers', 'anglober.services']);

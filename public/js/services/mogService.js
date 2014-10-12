@@ -2,9 +2,7 @@
  * Created by Komo on 12/10/2014.
  */
 
-var services = angular.module('services', []);
-
-services.factory('mogService', ['$http', function($http) {
+angular.module('anglober.services').factory('mogService', ['$http', function($http) {
 
     var mogService = {};
     var urlBase = '/topmogs';

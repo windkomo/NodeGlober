@@ -1,4 +1,4 @@
-angular.module('NodeGlober.controllers', [])
+angular.module('anglober.controllers', ['anglober.services'])
     .controller('mogCtrl', ['$scope', 'mogService', function ($scope, mogService) {
 
         $scope.topMogs;
