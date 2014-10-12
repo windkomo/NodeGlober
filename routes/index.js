@@ -30,7 +30,7 @@ router.get('/', function(req, res) {
 
     connection.end();*/
     var mogController = new MogController();
-    mogController.getMogs();
+
 
   res.render('index', { title: 'NodeGlober' });
 });

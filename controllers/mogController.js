@@ -5,14 +5,17 @@ var mysql = rekuire('mysql.js');
 MogController.prototype.getMogs = function getMogs(callback) {
     mysql.getConnection(function(err, connection){
         connection.query(
-        "SELECT u.user_id, u.first_name, u.nick_name, u.last_name, u.user_picture, u.mini_blog_name, bposts.post_title,"
-        + " bposts.post_text, bpictures.picture, bposts.post_date, SUM(bposts.views) as total FROM"
-        + " USERS u"
-        + " INNER JOIN (SELECT * FROM BLOG_POSTS ORDER BY blog_post_id DESC) as bposts ON u.user_id = bposts.user_id"
-        + " LEFT OUTER JOIN BLOG_PICTURES bpictures ON bposts.blog_post_id = bpictures.blog_post_id"
+        "SELECT u.mini_blog_name, BP.user_id, u.first_name, u.nick_name, u.last_name, SUM(BP.views) AS total,"
+        + " u.user_picture,  a.avatar_picture_path, u.avatar_or_photo, BP.post_date, BP.post_title, BP.post_text,"
+        + " BPICS.picture, BPICS.caption"
+        + " FROM (SELECT blog_post_id, user_id, post_date, views, post_title, post_text FROM blog_posts ORDER BY post_date DESC) AS BP"
+        + " INNER JOIN users u ON BP.user_id = u.user_id"
+        + " LEFT OUTER JOIN avatars a ON u.user_id = a.user_id"
+        + " LEFT OUTER JOIN blog_pictures BPICS ON BP.blog_post_id = BPICS.blog_post_id"
+        + " AND BPICS.index_number = (SELECT MIN(index_number) FROM blog_pictures WHERE blog_post_id = BP.blog_post_id)"
         + " WHERE u.mini_blog_public_private = 0"
-        + " group by u.user_id"
-        + " order by total DESC", function(err, rows) {
+        + " GROUP BY BP.user_id"
+        + " ORDER BY total DESC LIMIT 12;", function(err, rows) {
          callback(err, JSON.stringify(rows, null));
         })
         connection.release();
