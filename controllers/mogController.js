@@ -1,6 +1,6 @@
 function MogController() {
 }
-var mysql = rekuire('mysql.js');
+var mysql = require('../utils/mysql.js');
 
 MogController.prototype.getMogs = function getMogs(callback) {
     mysql.getConnection(function(err, connection){
@@ -16,7 +16,7 @@ MogController.prototype.getMogs = function getMogs(callback) {
         + " WHERE u.mini_blog_public_private = 0"
         + " GROUP BY BP.user_id"
         + " ORDER BY total DESC LIMIT 12;", function(err, rows) {
-         callback(err, JSON.stringify(rows, null));
+         callback(err, rows);
         })
         connection.release();
     })
