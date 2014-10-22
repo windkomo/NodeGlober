@@ -1,0 +1,22 @@
+<div id="topMogsContainer" class="topContainer">
+    <div class="topTitle">
+        Top MOGs
+    </div>
+    <div class="subTitle">
+        Latest posts
+    </div>
+    <div ng-repeat="mog in topMogs">
+        <div class="topMog">
+            Subscribe!
+            {{mog.avatar_picture_path}}
+            {{mog.first_name}}
+            {{mog.nick_name}}
+            {{mog.last_name}}
+            {{mog.picture}}
+            {{mog.post_title}}
+            {{mog.post_text}}
+            {{mog.post_date}}
+            <a href="http://localhost/upglober/user_profile.php?user_id={{mog.user_id}}#tab_mog">Read more...</a>
+        </div>
+    </div>
+</div>
