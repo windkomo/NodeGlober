@@ -1,4 +1,4 @@
-angular.module('anglober.controllers', []).controller('mogCtrl', ['$scope', 'mogService', function ($scope, mogService) {
+angular.module('anglober.controllers').controller('mogCtrl', ['$scope', 'mogService', 'modalService', function ($scope, mogService, modalService) {
 
        var loadTopMogs = $scope.loadTopMogs = function() {
 
@@ -15,4 +15,12 @@ angular.module('anglober.controllers', []).controller('mogCtrl', ['$scope', 'mog
 
          loadTopMogs();
 
-    }]);
+    var modalOptions = {
+        closeButtonText: 'Cancel',
+        actionButtonText: 'Delete Customer',
+        headerText: 'Delete ?',
+        bodyText: 'Are you sure you want to delete this customer?'
+    };
+
+    modalService.showModal({}, modalOptions);
+}]);

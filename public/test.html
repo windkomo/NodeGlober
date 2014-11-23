@@ -2,15 +2,19 @@
 <html ng-app="anglober">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+    <script src="js/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
+    <link href="js/bootstrap/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
     <script src="js/app.js"></script>
     <script src="js/services/mogService.js"></script>
+    <script src="js/services/modalService.js"></script>
     <script src="js/controllers/mogCtrl.js"></script>
     <script src="js/directives/mogDirective.js"></script>
+
+
 </head>
 <body>
 <div ng-controller="mogCtrl">
-    <top-mogs></top-mogs>
-    <!--a ng-click="loadTopMogs()" >click me</a-->
+    <a ng-click="openDialog()" >click me</a>
 </div>
 
 
