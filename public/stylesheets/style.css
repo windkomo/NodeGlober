@@ -7,3 +7,70 @@ a {
   color: #00B7FF;
 }
 
+.modal-content
+{
+    background-color: #22365b;
+    font-family: Calibri;
+}
+
+.modal-header
+{
+    color: #FFF;
+}
+
+.modal-body
+{
+    color: #FFF;
+}
+
+.orangeText
+{
+    color: #fe9600;
+}
+
+.orangeButton
+{
+    color: #fff;
+    background-color: #f8860e;
+    border-color: #1E5584;
+}
+
+.darkBlueButton
+{
+    color: #fff;
+    background-color: #131e32;
+    border-color: #1E5584;
+}
+
+.form-control-feedback
+{
+    text-align: inherit;
+}
+
+.invitationElement
+{
+    margin-bottom: 20px;
+}
+
+.has-feedback .form-control-feedback {
+    top: 25px;
+    right: 0;
+}
+
+.headerImg
+{
+    width: 37%;
+    margin-left: 50px;
+}
+
+.modal-header h3
+{
+    display: inline;
+    margin-left:40px;
+    vertical-align: middle;
+}
+
+.modal-body
+{
+    margin-left:40px;
+}

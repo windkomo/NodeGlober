@@ -1,6 +1,8 @@
 angular.module('anglober.services').factory('modalService', ['$modal',
     function ($modal) {
 
+        var modalService = {};
+
         var modalDefaults = {
             backdrop: true,
             keyboard: true,
@@ -12,16 +14,17 @@ angular.module('anglober.services').factory('modalService', ['$modal',
             closeButtonText: 'Close',
             actionButtonText: 'OK',
             headerText: 'Proceed?',
+            secondHeaderText: '',
             bodyText: 'Perform this action?'
         };
 
-        this.showModal = function (customModalDefaults, customModalOptions) {
+        modalService.showModal = function (customModalDefaults, customModalOptions) {
             if (!customModalDefaults) customModalDefaults = {};
             customModalDefaults.backdrop = 'static';
             return this.show(customModalDefaults, customModalOptions);
         };
 
-        this.show = function (customModalDefaults, customModalOptions) {
+        modalService.show = function (customModalDefaults, customModalOptions) {
             //Create temp objects to work with since we're in a singleton service
             var tempModalDefaults = {};
             var tempModalOptions = {};
@@ -46,5 +49,7 @@ angular.module('anglober.services').factory('modalService', ['$modal',
 
             return $modal.open(tempModalDefaults).result;
         };
+
+        return modalService;
 
     }]);
