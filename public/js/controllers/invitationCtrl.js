@@ -1,5 +1,10 @@
 angular.module('anglober.controllers').controller('invitationCtrl', ['$scope', 'modalService', function ($scope, modalService) {
 
+   $scope.invitationModal = {};
+   $scope.ajaxModal = {};
+
+        var maxInvites = 10;
+
         var modalOptions = {
             closeButtonText: 'Cancel',
             actionButtonText: 'Send invitations',
@@ -16,18 +21,98 @@ angular.module('anglober.controllers').controller('invitationCtrl', ['$scope', '
             scope: $scope
         };
 
+        var invitationConfirmationOptions = {
+            actionButtonText: 'Ok',
+            headerText: 'Thank ',
+            secondHeaderText: 'you!',
+            bodyText: 'Your invitations have been sent successfully!'
+        };
+
+        var ajaxModalOptions = {
+            actionButtonText: 'Ok',
+            headerText: 'Please ',
+            secondHeaderText: 'wait...',
+            bodyText: 'Your invitations are being sent...'
+        };
+
+        var invitationConfirmationParameters = {
+            backdrop: true,
+            keyboard: true,
+            modalFade: true,
+            templateUrl: 'js/simpleModal.html',
+            size: "sm",
+            scope: $scope
+        };
+
+        var ajaxModalParameters = {
+            backdrop: "static",
+            keyboard: false,
+            templateUrl: 'js/ajaxModal.html',
+            size: "sm",
+            scope: $scope
+        };
+
+
+
         $scope.openInvitation = function() {
             initializeModal();
-            modalService.showModal(modalParameters, modalOptions);
+            $scope.invitationModal = modalService.showModal(modalParameters, modalOptions);
+        };
+
+    $scope.sendInvitations = function(){
+        $scope.ajaxModal = modalService.showModal(ajaxModalParameters, ajaxModalOptions);
+
+        setTimeout(function () {
+            $scope.ajaxModal.close();
+            modalService.showModal(invitationConfirmationParameters, invitationConfirmationOptions);
+        }, 2500);
+    };
+
+        $scope.checkInvite = function(index, form)
+        {
+            // Only process valid email
+
+                // If empty and not last field, remove it
+                if ($scope.invites[index].mail === '' && index < $scope.invites.length - 1) {
+                    $scope.invites.splice(index, 1);
+                    form.input.focusMe = true;
+                    $scope.invites[index].hasFocus = true;
+                }
+
+                // If valid not empty mail, add a new invite field
+                if ($scope.invites[$scope.invites.length - 1].mail && $scope.invites.length < maxInvites) {
+                    $scope.invites.push({'mail':''});
+                }
         };
 
         function initializeModal()
         {
-            $scope.emails = [];
-            $scope.emails.push({'value':''});
+            $scope.invites = [];
+            $scope.invites.push({'mail':'', 'hasFocus' : true});
         }
 
         initializeModal();
 
 
 }]);
+
+angular.module('anglober.controllers').directive('focusMe', function($timeout, $parse) {
+    return {
+        //scope: true,   // optionally create a child scope
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.focusMe);
+            scope.$watch(model, function(value) {
+                if(value === true) {
+                    $timeout(function() {
+                        element[0].focus();
+                    });
+                }
+            });
+            // to address @blesh's comment, set attribute value to 'false'
+            // on blur event:
+            element.bind('blur', function() {
+                scope.$apply(model.assign(scope, false));
+            });
+        }
+    };
+});

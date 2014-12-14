@@ -1,17 +1,16 @@
 <div class="modal-header">
     <h3>{{modalOptions.headerText}}<span class="orangeText">{{modalOptions.secondHeaderText}}</span></h3>
     <img class="headerImg" ng-src="js/friends.png" />
-</div>
 <div class="modal-body">
     <p>{{modalOptions.bodyText}}</p>
 </div>
 <ng-form name="invitationForm">
-<div ng-repeat="email in emails" ng-form='lineForm'>
+<div ng-repeat="invite in invites" ng-form='lineForm'>
     <div class="row invitationElement">
-    <div class="has-feedback col-md-6 col-md-offset-1" ng-class="{'has-error': lineForm.$invalid && !!lineForm.input, 'has-success': !!lineForm.input && !lineForm.$invalid}">
+    <div class="has-feedback col-md-6 col-md-offset-1" ng-class="{'has-error': invites[$index].mail !== '' && lineForm.$invalid && lineForm.$dirty, 'has-success': !lineForm.$invalid && invites[$index].mail !== ''}">
         <label class="control-label sr-only" for="inputSuccess">Input with success</label>
-        <input ng-change="inputCheck($index)" id="inputSuccess" placeholder="Enter your friend's email" name="input" ng-model="email.value"  class="form-control input-mini" aria-describedby="inputSuccessStatus" type="email" />
-        <span ng-show="lineForm.$dirty" class="glyphicon glyphicon-ok form-control-feedback" ng-class="{'glyphicon-ok': lineForm.$valid && lineForm.input, 'glyphicon-remove ': lineForm.$invalid  && lineForm.input}" aria-hidden="true"></span>
+        <input focus-me="invites[$index].hasFocus" ng-change="checkInvite($index, lineForm)" id="inputSuccess" placeholder="Enter your friend's email" name="input" ng-model="invite.mail"  class="form-control input-mini" aria-describedby="inputSuccessStatus" type="email" />
+        <span ng-show="lineForm.$dirty" class="glyphicon form-control-feedback" ng-class="{'glyphicon-ok': !lineForm.$invalid && invites[$index].mail !== '', 'glyphicon-remove ': lineForm.$invalid && lineForm.$dirty && invites[$index].mail !== ''}" aria-hidden="true"></span>
         <span id="inputSuccessStatus" class="sr-only">(success)</span>
     </div>
     </div>
@@ -19,7 +18,7 @@
 <div class="modal-footer">
     <button type="button" class="btn darkBlueButton"
             data-ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
-    <button class="btn btn-primary orangeButton" ng-disabled="invitationForm.$invalid || invitationForm.$pristine"
-            data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+    <button class="btn btn-primary orangeButton" ng-disabled="invitationForm.$invalid || invites[0].mail.length == 0"
+            data-ng-click="modalOptions.close();sendInvitations();">{{modalOptions.actionButtonText}}</button>
 </div>
 </ng-form>

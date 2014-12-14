@@ -20,7 +20,6 @@ angular.module('anglober.services').factory('modalService', ['$modal',
 
         modalService.showModal = function (customModalDefaults, customModalOptions) {
             if (!customModalDefaults) customModalDefaults = {};
-            customModalDefaults.backdrop = 'static';
             return this.show(customModalDefaults, customModalOptions);
         };
 
@@ -47,7 +46,7 @@ angular.module('anglober.services').factory('modalService', ['$modal',
                 }
             }
 
-            return $modal.open(tempModalDefaults).result;
+            return $modal.open(tempModalDefaults);
         };
 
         return modalService;

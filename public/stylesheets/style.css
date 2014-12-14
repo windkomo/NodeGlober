@@ -62,6 +62,11 @@ a {
     width: 37%;
     margin-left: 50px;
 }
+.smallHeaderImg
+{
+    width: 19%;
+    margin-left: 20px;
+}
 
 .modal-header h3
 {
@@ -74,3 +79,26 @@ a {
 {
     margin-left:40px;
 }
+
+.ng-enter {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+
+    margin-left: 10%;
+}
+
+.ng-enter-active {
+    margin-left: 0;
+}
+
+.ng-move {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+
+    background: gold;
+}
+
+.ng-move-active {
+    background: #fff;
+}
+
