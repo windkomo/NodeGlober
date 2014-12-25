@@ -5,6 +5,6 @@
 angular.module('anglober.directives').directive('ajaxLoader', function () {
     return {
         restrict : 'E',
-        templateUrl: 'js/directives/templates/ajaxLoader.tpl.html'
+        templateUrl: 'js/ajaxLoader/ajaxLoader.tpl.html'
     };
 });

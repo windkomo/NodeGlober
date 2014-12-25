@@ -1,5 +1,5 @@
-angular.module('anglober.services').factory('modalService', ['$modal',
-    function ($modal) {
+angular.module('anglober.services').factory('modalService',  ['$modal', '$templateCache',
+    function ($modal, $templateCache) {
 
         var modalService = {};
 
@@ -7,7 +7,8 @@ angular.module('anglober.services').factory('modalService', ['$modal',
             backdrop: true,
             keyboard: true,
             modalFade: true,
-            templateUrl: 'js/modalContent.html'
+            template: $templateCache.get("modalContent.html")
+         //   templateUrl: 'js/modalContent.html'
         };
 
         var modalOptions = {

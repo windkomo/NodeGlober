@@ -5,6 +5,6 @@
 angular.module('anglober.directives').directive('topMogs', function () {
     return {
         restrict : 'E',
-        templateUrl: 'js/directives/templates/topMogs.tpl.html'
+        templateUrl: 'js/mog/topMogs.tpl.html'
     };
 });

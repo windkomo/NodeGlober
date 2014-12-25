@@ -8,12 +8,12 @@
     <link href="stylesheets/style.css" rel="stylesheet">
     <link href="stylesheets/ajax.css" rel="stylesheet">
     <script src="js/app.js"></script>
-    <script src="js/services/mogService.js"></script>
-    <script src="js/services/modalService.js"></script>
-    <script src="js/controllers/mogCtrl.js"></script>
-    <script src="js/controllers/invitationCtrl.js"></script>
-    <script src="js/directives/mogDirective.js"></script>
-    <script src="js/directives/ajaxLoaderDirective.js"></script>
+    <script src="js/mog/mogService.js"></script>
+    <script src="js/modal/modalService.js"></script>
+    <script src="js/mog/mogCtrl.js"></script>
+    <script src="js/invitation/invitationCtrl.js"></script>
+    <script src="js/mog/mogDirective.js"></script>
+    <script src="js/ajaxLoader/ajaxLoaderDirective.js"></script>
 
 
 </head>
@@ -21,7 +21,9 @@
 <div ng-controller="invitationCtrl">
     <a ng-click="openInvitation()" >click me</a>
 </div>
-
+<div ng-controller="mogCtrl">
+<top-mogs/>
+</div>
 
 </body>
 </html>

@@ -1,7 +1,9 @@
-angular.module('anglober.controllers').controller('invitationCtrl', ['$scope', 'modalService', function ($scope, modalService) {
+angular.module('anglober.controllers').controller('invitationCtrl', ['$scope', 'modalService', '$templateCache', function ($scope, modalService, $templateCache) {
 
    $scope.invitationModal = {};
    $scope.ajaxModal = {};
+
+    console.log($templateCache.get('js/invitation/invitationModal.html'));
 
         var maxInvites = 10;
 
@@ -17,7 +19,8 @@ angular.module('anglober.controllers').controller('invitationCtrl', ['$scope', '
             backdrop: true,
             keyboard: true,
             modalFade: true,
-            templateUrl: 'js/invitationModal.html',
+       //     templateUrl: '/js/invitation/invitationModal.html',
+            template: $templateCache.get("invitationModal.html"),
             scope: $scope
         };
 
@@ -39,7 +42,8 @@ angular.module('anglober.controllers').controller('invitationCtrl', ['$scope', '
             backdrop: true,
             keyboard: true,
             modalFade: true,
-            templateUrl: 'js/simpleModal.html',
+            template: $templateCache.get("simpleModal.html"),
+          //  templateUrl: 'js/modal/simpleModal.html',
             size: "sm",
             scope: $scope
         };
@@ -47,7 +51,8 @@ angular.module('anglober.controllers').controller('invitationCtrl', ['$scope', '
         var ajaxModalParameters = {
             backdrop: "static",
             keyboard: false,
-            templateUrl: 'js/ajaxModal.html',
+            template: $templateCache.get("ajaxModal.html"),
+          //  templateUrl: 'js/modal/ajaxModal.html',
             size: "sm",
             scope: $scope
         };
