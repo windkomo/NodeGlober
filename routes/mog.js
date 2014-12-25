@@ -3,10 +3,11 @@ var router = express.Router();
 var MogController = rekuire('mogController');
 
 /* GET top mogs listing. */
-router.get('/topmogs', function(req, res) {
+router.get('/topmogs/:language', function(req, res) {
 
+    var languageId = req.params.language;
     var mogController = new MogController();
-    mogController.getMogs(function(err, result) {
+    mogController.getMogs(languageId, function(err, result) {
         if (err) throw err;
         res.json(result);
     });
